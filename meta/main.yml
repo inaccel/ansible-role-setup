@@ -1,0 +1,17 @@
+galaxy_info:
+  author: InAccel
+  company: InAccel
+  description: InAccel repository | quick & easy setup
+  galaxy_tags:
+  - inaccel
+  - fpga
+  license: Apache-2.0
+  min_ansible_version: 2.9
+  platforms:
+  - name: Amazon
+  - name: Amazon Linux 2
+  - name: Debian
+  - name: EL
+  - name: Fedora
+  - name: Ubuntu
+  role_name: setup

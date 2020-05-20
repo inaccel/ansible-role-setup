@@ -1,0 +1,13 @@
+---
+- name: Setup InAccel repository (1/2)
+  apt_key:
+    url: https://jfrog.inaccel.com/artifactory/generic/packages/gpg
+- name: Setup InAccel repository (2/2)
+  apt_repository:
+    filename: inaccel
+    repo: deb [arch=amd64] https://jfrog.inaccel.com/artifactory/generic/packages/debian /
+    update_cache: yes
+- name: Install InAccel
+  apt:
+    name: inaccel
+  when: install|bool

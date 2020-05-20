@@ -1,0 +1,13 @@
+---
+- name: Setup InAccel repository
+  yum_repository:
+    name: inaccel
+    description: InAccel repository
+    baseurl: https://jfrog.inaccel.com/artifactory/generic/packages/rpm
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://jfrog.inaccel.com/artifactory/generic/packages/gpg
+- name: Install InAccel
+  yum:
+    name: inaccel
+  when: install|bool
