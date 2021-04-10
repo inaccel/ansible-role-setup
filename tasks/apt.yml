@@ -1,13 +1,17 @@
 ---
-- name: Setup InAccel repository (1/2)
+- name: Setup InAccel repository (1/3)
   apt_key:
-    url: https://jfrog.inaccel.com/artifactory/generic/packages/gpg
-- name: Setup InAccel repository (2/2)
+    url: https://setup.inaccel.com/gpg
+- name: Setup InAccel repository (2/3)
+  command: dpkg --print-architecture
+  register: dpkg_architecture
+  changed_when: False
+- name: Setup InAccel repository (3/3)
   apt_repository:
     filename: inaccel
-    repo: deb [arch=amd64] https://jfrog.inaccel.com/artifactory/generic/packages/debian /
+    repo: deb [arch={{ dpkg_architecture.stdout }}] https://dl.cloudsmith.io/public/inaccel/stable/deb/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main
     update_cache: yes
 - name: Install InAccel
   apt:
-    name: inaccel
+    name: inaccel-fpga
   when: install|bool

@@ -2,12 +2,12 @@
 - name: Setup InAccel repository
   yum_repository:
     name: inaccel
-    description: InAccel repository
-    baseurl: https://jfrog.inaccel.com/artifactory/generic/packages/rpm
+    description: InAccel Packages
+    baseurl: https://dl.cloudsmith.io/public/inaccel/stable/rpm/any-distro/any-version/$basearch
     enabled: yes
     gpgcheck: yes
-    gpgkey: https://jfrog.inaccel.com/artifactory/generic/packages/gpg
+    gpgkey: https://setup.inaccel.com/gpg
 - name: Install InAccel
   yum:
-    name: inaccel
+    name: inaccel-fpga
   when: install|bool
