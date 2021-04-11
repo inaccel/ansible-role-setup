@@ -1,12 +1,15 @@
 ---
 - name: Setup InAccel repository (1/3)
+  apt:
+    name: gpg
+- name: Setup InAccel repository (2/3)
   apt_key:
     url: https://setup.inaccel.com/gpg
-- name: Setup InAccel repository (2/3)
+- name: Setup InAccel repository (3/4)
   command: dpkg --print-architecture
   register: dpkg_architecture
   changed_when: False
-- name: Setup InAccel repository (3/3)
+- name: Setup InAccel repository (4/4)
   apt_repository:
     filename: inaccel
     repo: deb [arch={{ dpkg_architecture.stdout }}] https://dl.cloudsmith.io/public/inaccel/stable/deb/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main
