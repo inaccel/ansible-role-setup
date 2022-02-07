@@ -4,6 +4,7 @@
     name: gpg
 - name: Setup InAccel repository (2/3)
   apt_key:
+    keyring: /usr/share/keyrings/inaccel-archive-keyring.gpg
     url: https://setup.inaccel.com/gpg
 - name: Setup InAccel repository (3/4)
   command: dpkg --print-architecture
@@ -12,7 +13,7 @@
 - name: Setup InAccel repository (4/4)
   apt_repository:
     filename: inaccel
-    repo: deb [arch={{ dpkg_architecture.stdout }}] https://dl.cloudsmith.io/public/inaccel/stable/deb/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main
+    repo: deb [arch={{ dpkg_architecture.stdout }} signed-by=/usr/share/keyrings/inaccel-archive-keyring.gpg] https://dl.cloudsmith.io/public/inaccel/stable/deb/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main
     update_cache: yes
 - name: Install InAccel
   apt:
